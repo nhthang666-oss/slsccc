@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saigon Lion Supply Chain</title>
+  <style>
+    /* --- General --- */
+    :root{
+      --nav:#002244; /* deep navy */
+      --gold:#cc9a18; /* warm gold */
+      --muted:#f0f2f5;
+      --accent:#003366;
+      --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    body {
+      margin: 0;
+      font-family: Inter, 'Segoe UI', Roboto, system-ui, Arial, sans-serif;
+      background-color: #fff;
+      color: #222;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* --- Header / Nav --- */
+    .topbar{
+      background:var(--nav);
+      color:white;
+      padding:8px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;padding:14px 0;
+    }
+    .logo img{height:56px}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:white;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:6px}
+    nav a:hover{background:rgba(255,255,255,0.06)}
+    .lang-switch{display:flex;gap:8px}
+    .lang-switch button{background:transparent;border:1px solid rgba(255,255,255,0.14);color:white;padding:6px 10px;border-radius:6px;cursor:pointer}
+    .cta-quote{background:var(--gold);color:var(--nav);padding:8px 12px;border-radius:6px;font-weight:700}
+
+    /* sticky nav on scroll */
+    .sticky{position:sticky;top:0;z-index:30;box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+
+    /* --- Hero --- */
+    .hero{
+      position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;text-align:center;color:white;
+      background-size:cover;background-position:center center;
+    }
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 60%)}
+    .hero-inner{position:relative;z-index:2;max-width:1000px;padding:60px 20px}
+    .hero h1{font-size:40px;margin:0 0 12px;font-weight:800;letter-spacing:-0.02em}
+    .hero p{margin:0 0 20px;font-size:18px;opacity:0.95}
+    .hero .buttons{display:flex;gap:12px;justify-content:center}
+    .btn{background:var(--gold);color:var(--nav);padding:12px 22px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    .btn-outline{background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.18)}
+
+    /* --- Sections --- */
+    section{padding:64px 0}
+    h2.section-title{font-size:26px;margin:0 0 18px;color:var(--accent)}
+    p.lead{max-width:880px;margin:0 auto 18px;color:#444}
+
+    /* Services grid (inspired by BeeLogistics cards) */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px}
+    .card{background:white;border-radius:12px;padding:22px;box-shadow:0 6px 18px rgba(16,24,40,0.06);text-align:left}
+    .card h3{margin:0 0 10px;font-size:18px}
+    .card p{margin:0;color:#555;font-size:14px}
+
+    /* About two-column (inspired by StarConcord layout) */
+    .about{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center}
+    .about .text{padding-right:8px}
+    .about .box{background:var(--muted);border-radius:10px;padding:22px}
+
+    /* Offices list */
+    .offices-grid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:18px}
+    .office{min-width:220px;background:white;padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(16,24,40,0.04);text-align:left}
+    .office strong{display:block;margin-bottom:6px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
+    form{display:flex;flex-direction:column;gap:12px}
+    input,textarea,select{padding:12px;border-radius:8px;border:1px solid #d6d9dd;font-size:14px}
+    textarea{min-height:140px}
+
+    /* Footer */
+    footer{background:var(--nav);color:white;padding:36px 0;margin-top:18px}
+    .footer-row{display:flex;gap:30px;flex-wrap:wrap}
+    .footer-col{min-width:180px}
+    .social{display:flex;gap:8px;margin-top:8px}
+    .social a{display:inline-block;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);text-align:center;line-height:36px;color:white;text-decoration:none}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .about{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      nav{display:none}
+      .mobile-nav-toggle{display:block}
+      .cards{grid-template-columns:1fr}
+      header{padding:10px 0}
+      .hero{padding:80px 0}
+      .hero h1{font-size:28px}
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar sticky">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <img src="c2825f59-37eb-4354-9a72-02da65c45ce1.png" alt="logo" style="height:42px;border-radius:6px;background:#fff;padding:4px" />
+        <div style="color:white;font-weight:700">Saigon Lion Supply Chain Co., Ltd.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="color:rgba(255,255,255,0.9);font-size:14px">Fast. Secure. Global.</div>
+        <div class="lang-switch">
+          <button id="enBtn">EN</button>
+          <button id="zhBtn">繁</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="container sticky" style="background:transparent;">
+    <header>
+      <div class="logo"><img src="c2825f59-37eb-4354-9a72-02da65c45ce1.png" alt="logo" /></div>
+      <nav>
+        <a href="#home" data-en="Home" data-zh="首頁">Home</a>
+        <a href="#about" data-en="About" data-zh="關於我們">About Us</a>
+        <a href="#services" data-en="Services" data-zh="服務項目">Services</a>
+        <a href="#offices" data-en="Offices" data-zh="辦事處">Offices</a>
+        <a href="#contact" data-en="Contact" data-zh="聯絡我們">Contact</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="cta-quote" data-en="Get a Quote" data-zh="詢價">Get a Quote</div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" id="home" style="background-image:url('b340d07c-6c80-440b-a8e5-3f8e01512fe5.png')">
+    <div class="hero-inner container">
+      <h1 data-en="Saigon Lion Supply Chain Co., Ltd." data-zh="西貢獅子供應鏈有限公司">Saigon Lion Supply Chain Co., Ltd.</h1>
+      <p class="lead" data-en="Connecting the world through reliable, fast and secure logistics solutions." data-zh="以可靠、迅速且安全的物流解決方案連接全球。">Connecting the world through reliable, fast and secure logistics solutions.</p>
+      <div class="buttons">
+        <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-en="Contact Us" data-zh="聯絡我們">Contact Us</button>
+        <button class="btn btn-outline" data-en="Our Services" data-zh="服務項目" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Our Services</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About (two-column) -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title" data-en="About Saigon Lion" data-zh="關於西貢獅子">About Saigon Lion</h2>
+      <div class="about">
+        <div class="text">
+          <p class="lead" data-en="Established in Vietnam, Saigon Lion provides end-to-end supply chain services, combining local expertise with global partnerships. We specialize in sea & air freight, customs brokerage, warehousing and value-added logistics services." data-zh="西貢獅子在越南成立，提供端到端供應鏈服務，結合在地專業與全球夥伴。我們專長於海運與空運、報關、倉儲及增值物流服務。">Established in Vietnam, Saigon Lion provides end-to-end supply chain services, combining local expertise with global partnerships. We specialize in sea & air freight, customs brokerage, warehousing and value-added logistics services.</p>
+
+          <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
+            <div style="background:var(--muted);padding:12px;border-radius:10px;min-width:160px;text-align:left">
+              <div style="font-weight:700" data-en="30+ Years Experience" data-zh="30+ 年經驗">30+ Years Experience</div>
+              <div style="font-size:13px;color:#555">Trusted by partners worldwide</div>
+            </div>
+            <div style="background:var(--muted);padding:12px;border-radius:10px;min-width:160px;text-align:left">
+              <div style="font-weight:700" data-en="Customs Expertise" data-zh="報關專業">Customs Expertise</div>
+              <div style="font-size:13px;color:#555">Fast clearance, minimal delays</div>
+            </div>
+            <div style="background:var(--muted);padding:12px;border-radius:10px;min-width:160px;text-align:left">
+              <div style="font-weight:700" data-en="24/7 Support" data-zh="全天候支援">24/7 Support</div>
+              <div style="font-size:13px;color:#555">Real-time tracking & assistance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3 data-en="Why Choose Us" data-zh="為何選擇我們">Why Choose Us</h3>
+          <ul style="padding-left:18px;color:#444;margin-top:8px">
+            <li data-en="Competitive rates and reliable transit times" data-zh="具競爭力價格與可靠運期">Competitive rates and reliable transit times</li>
+            <li data-en="Strong regional network across Asia" data-zh="遍及亞洲的強大區域網絡">Strong regional network across Asia</li>
+            <li data-en="Flexible warehousing & distribution options" data-zh="彈性倉儲與配送選項">Flexible warehousing & distribution options</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="background:linear-gradient(180deg,#fff,#fbfbfd)">
+    <div class="container">
+      <h2 class="section-title" data-en="Our Services" data-zh="我們的服務">Our Services</h2>
+      <p class="lead" data-en="Comprehensive logistics solutions tailored to your business needs." data-zh="為您的業務需求量身打造的全面物流解決方案。">Comprehensive logistics solutions tailored to your business needs.</p>
+
+      <div class="cards">
+        <div class="card">
+          <h3 data-en="Sea Freight" data-zh="海運">Sea Freight</h3>
+          <p data-en="Full container load (FCL), less than container load (LCL), project cargo and door-to-door services." data-zh="整櫃、拼櫃、專案貨物與門到門運輸服務。">Full container load (FCL), less than container load (LCL), project cargo and door-to-door services.</p>
+        </div>
+        <div class="card">
+          <h3 data-en="Air Freight" data-zh="空運">Air Freight</h3>
+          <p data-en="Priority and economy options with strong airline partnerships and customs support." data-zh="優先與經濟選項，擁有航空公司與通關協作夥伴。">Priority and economy options with strong airline partnerships and customs support.</p>
+        </div>
+        <div class="card">
+          <h3 data-en="Customs & Compliance" data-zh="報關與合規">Customs & Compliance</h3>
+          <p data-en="Experienced brokers to ensure smooth clearance and regulatory compliance." data-zh="資深報關團隊確保順利通關與法規遵循。">Experienced brokers to ensure smooth clearance and regulatory compliance.</p>
+        </div>
+        <div class="card">
+          <h3 data-en="Warehousing" data-zh="倉儲">Warehousing</h3>
+          <p data-en="Secure storage, inventory management, cross-docking and value-added services." data-zh="安全儲存、庫存管理、交叉配貨與增值服務。">Secure storage, inventory management, cross-docking and value-added services.</p>
+        </div>
+        <div class="card">
+          <h3 data-en="Supply Chain Solutions" data-zh="供應鏈方案">Supply Chain Solutions</h3>
+          <p data-en="End-to-end planning, procurement support and distribution network design." data-zh="端到端規劃、採購支援與配送網絡設計。">End-to-end planning, procurement support and distribution network design.</p>
+        </div>
+        <div class="card">
+          <h3 data-en="Last Mile & Distribution" data-zh="末端配送">Last Mile & Distribution</h3>
+          <p data-en="Domestic delivery, e-commerce fulfillment and temperature-controlled logistics." data-zh="國內配送、電商履約與冷鏈物流。">Domestic delivery, e-commerce fulfillment and temperature-controlled logistics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offices -->
+  <section id="offices">
+    <div class="container">
+      <h2 class="section-title" data-en="Our Offices & Partners" data-zh="辦事處與合作夥伴">Our Offices & Partners</h2>
+      <p class="lead" data-en="Local presence with global reach — contact our nearest office for dedicated support." data-zh="在地服務、全球佈局 — 聯絡就近辦事處以獲得專屬支援。">Local presence with global reach — contact our nearest office for dedicated support.</p>
+
+      <div class="offices-grid">
+        <div class="office"><strong data-en="Ho Chi Minh City (HQ)" data-zh="胡志明市（總部）">Ho Chi Minh City (HQ)</strong> 123 Nguyen Van Cu, District 5<br/>+84 28 1234 5678</div>
+        <div class="office"><strong data-en="Hanoi" data-zh="河內">Hanoi</strong> Branch Office<br/>+84 24 9876 5432</div>
+        <div class="office"><strong data-en="Singapore" data-zh="新加坡">Singapore</strong> Regional Partner<br/>+65 6123 4567</div>
+        <div class="office"><strong data-en="Hong Kong" data-zh="香港">Hong Kong</strong> Sales & Ops<br/>+852 2345 6789</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="background:linear-gradient(180deg,#fbfbfd,#fff)">
+    <div class="container">
+      <h2 class="section-title" data-en="Contact Us" data-zh="聯絡我們">Contact Us</h2>
+      <div class="contact-grid">
+        <div>
+          <form id="contactForm">
+            <input type="text" name="name" placeholder="Your name" data-en-placeholder="Your name" data-zh-placeholder="您的姓名" required />
+            <input type="email" name="email" placeholder="Email" data-en-placeholder="Email" data-zh-placeholder="電郵" required />
+            <input type="text" name="company" placeholder="Company" data-en-placeholder="Company" data-zh-placeholder="公司名稱" />
+            <select name="service">
+              <option value="" data-en="Select service" data-zh="選擇服務">Select service</option>
+              <option value="sea" data-en="Sea Freight" data-zh="海運">Sea Freight</option>
+              <option value="air" data-en="Air Freight" data-zh="空運">Air Freight</option>
+            </select>
+            <textarea name="message" placeholder="Message" data-en-placeholder="Message" data-zh-placeholder="訊息"></textarea>
+            <button class="btn" type="submit" data-en="Send Message" data-zh="送出">Send Message</button>
+          </form>
+        </div>
+        <div>
+          <div style="background:white;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.04)">
+            <h3 data-en="Contact Information" data-zh="聯絡資訊">Contact Information</h3>
+            <p data-en="Email: info@slsc.vn<br/>Phone: +84 28 1234 5678<br/>Address: 123 Nguyen Van Cu, HCMC, Vietnam" data-zh="電郵：info@slsc.vn<br/>電話：+84 28 1234 5678<br/>地址：越南胡志明市阮文裘123號">Email: info@slsc.vn<br/>Phone: +84 28 1234 5678<br/>Address: 123 Nguyen Van Cu, HCMC, Vietnam</p>
+            <div style="margin-top:12px"><strong data-en="Business hours" data-zh="服務時間">Business hours</strong>
+            <div data-en="Mon-Fri: 9:00 - 18:00" data-zh="週一至週五 9:00 - 18:00">Mon-Fri: 9:00 - 18:00</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap">
+        <div class="footer-col">
+          <img src="c2825f59-37eb-4354-9a72-02da65c45ce1.png" alt="logo" style="height:46px;background:white;padding:6px;border-radius:8px" />
+          <p style="max-width:300px;margin-top:12px">Saigon Lion Supply Chain — Fast. Secure. Global.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul style="list-style:none;padding:0;margin:8px 0 0;color:#e6eef7">
+            <li><a href="#services" style="color:inherit;text-decoration:none">Services</a></li>
+            <li><a href="#offices" style="color:inherit;text-decoration:none">Offices</a></li>
+            <li><a href="#contact" style="color:inherit;text-decoration:none">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social"><a href="#">in</a><a href="#">fb</a><a href="#">tw</a></div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:22px;color:rgba(255,255,255,0.7)">© 2025 Saigon Lion Supply Chain Co., Ltd. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // language switch
+    const enBtn = document.getElementById('enBtn');
+    const zhBtn = document.getElementById('zhBtn');
+    const translatables = document.querySelectorAll('[data-en]');
+    const placeholders = document.querySelectorAll('[data-en-placeholder]');
+
+    function setLang(lang){
+      translatables.forEach(el=>{
+        el.textContent = (lang==='zh') ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+      })
+      placeholders.forEach(el=>{
+        el.placeholder = (lang==='zh') ? el.getAttribute('data-zh-placeholder') : el.getAttribute('data-en-placeholder');
+      })
+      // store
+      try{localStorage.setItem('slsc_lang',lang)}catch(e){}
+    }
+    enBtn.addEventListener('click',()=>setLang('en'));
+    zhBtn.addEventListener('click',()=>setLang('zh'));
+    // init from storage
+    const savedLang = (localStorage.getItem('slsc_lang')||'en');
+    setLang(savedLang);
+
+    // smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth'});
+      })
+    })
+
+    // simple contact form handler (demo)
+    document.getElementById('contactForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      alert((localStorage.getItem('slsc_lang')==='zh')? '表單已送出，感謝您！' : 'Form submitted — thank you!');
+      this.reset();
+    })
+  </script>
+</body>
+</html>
