@@ -11,54 +11,63 @@
       background-color: #ffffff;
       color: #333;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     header {
-      background: linear-gradient(90deg, #004080, #0055aa);
+      background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
       color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 50px;
+      padding: 8px 40px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
     }
     header img {
-      height: 55px;
+      height: 42px;
+      transition: transform 0.3s;
+    }
+    header img:hover {
+      transform: scale(1.05);
     }
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 12px;
       font-weight: 600;
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #ffcc00;
+      color: #fffbe0;
     }
     .lang-switch button {
       background: none;
       border: 1px solid #fff;
       color: white;
       border-radius: 5px;
-      padding: 6px 12px;
+      padding: 5px 10px;
       margin-left: 6px;
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s;
     }
     .lang-switch button:hover {
-      background-color: #ffcc00;
-      color: #004080;
-      border-color: #ffcc00;
+      background-color: #fffbe0;
+      color: #8b4513;
+      border-color: #fffbe0;
     }
     .hero {
-      background: url('hero.png') center/cover no-repeat;
+      background: url('hero.png') center/cover fixed no-repeat;
       color: white;
       text-align: center;
-      padding: 180px 20px;
+      padding: 200px 20px;
       position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.5s ease-in-out;
     }
     .hero::after {
       content: '';
@@ -69,10 +78,10 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      animation: fadeIn 1.2s ease-in-out;
+      animation: floatUp 2s ease-in-out;
     }
     .hero h1 {
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       font-weight: 800;
       margin-bottom: 15px;
       text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
@@ -83,8 +92,8 @@
       text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
     }
     .btn {
-      background-color: #ffcc00;
-      color: #002244;
+      background-color: #fbbf24;
+      color: #5a3100;
       font-weight: 700;
       border: none;
       border-radius: 8px;
@@ -94,20 +103,21 @@
       transition: background-color 0.3s, transform 0.3s;
     }
     .btn:hover {
-      background-color: #ffdd33;
+      background-color: #fcd34d;
       transform: scale(1.05);
     }
     .section {
-      padding: 70px 10%;
+      padding: 80px 10%;
       text-align: center;
+      animation: fadeIn 1.2s ease-in-out;
     }
     .section:nth-child(even) {
-      background-color: #f8f9fc;
+      background-color: #fdfaf6;
     }
     .section h2 {
-      font-size: 1.8rem;
-      color: #004080;
-      margin-bottom: 15px;
+      font-size: 1.9rem;
+      color: #b45309;
+      margin-bottom: 20px;
     }
     .section p {
       max-width: 800px;
@@ -115,7 +125,7 @@
       font-size: 1.05rem;
     }
     footer {
-      background-color: #004080;
+      background-color: #d97706;
       color: white;
       text-align: center;
       padding: 25px 0;
@@ -123,8 +133,12 @@
       box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -180,8 +194,8 @@
 
   <section class="section" id="contact">
     <h2 data-en="Contact Us" data-zh="聯絡我們">Contact Us</h2>
-    <p data-en="Email: info@slsc.vn | Phone: +84 28 1234 5678" data-zh="電郵：info@slsc.vn | 電話：+84 28 1234 5678">
-      Email: info@slsc.vn | Phone: +84 28 1234 5678
+    <p data-en="Email: hiring.slschcm@gmail.com | Phone: +84 38 279 8634" data-zh="電郵：hiring.slschcm@gmail.com | 電話：+84 38 279 8634">
+      Email: hiring.slschcm@gmail.com | Phone: +84 38 279 8634
     </p>
   </section>
 
@@ -200,6 +214,15 @@
 
     zhBtn.addEventListener('click', () => {
       translatables.forEach(el => el.textContent = el.getAttribute('data-zh'));
+    });
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.padding = '4px 40px';
+      } else {
+        header.style.padding = '8px 40px';
+      }
     });
   </script>
 </body>
