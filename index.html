@@ -8,41 +8,49 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
+      background-color: #ffffff;
       color: #333;
+      line-height: 1.6;
     }
     header {
-      background-color: #002244;
+      background: linear-gradient(90deg, #004080, #0055aa);
       color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 40px;
+      padding: 15px 50px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header img {
-      height: 50px;
+      height: 55px;
     }
     nav a {
       color: white;
       text-decoration: none;
       margin: 0 15px;
       font-weight: 600;
+      transition: color 0.3s;
     }
     nav a:hover {
-      text-decoration: underline;
+      color: #ffcc00;
     }
     .lang-switch button {
       background: none;
       border: 1px solid #fff;
       color: white;
       border-radius: 5px;
-      padding: 5px 10px;
-      margin-left: 5px;
+      padding: 6px 12px;
+      margin-left: 6px;
       cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
     }
     .lang-switch button:hover {
       background-color: #ffcc00;
-      color: #002244;
+      color: #004080;
       border-color: #ffcc00;
     }
     .hero {
@@ -56,40 +64,67 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.25);
     }
     .hero-content {
       position: relative;
       z-index: 2;
+      animation: fadeIn 1.2s ease-in-out;
     }
     .hero h1 {
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 800;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
     }
     .hero p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
     }
     .btn {
       background-color: #ffcc00;
       color: #002244;
-      font-weight: 600;
+      font-weight: 700;
       border: none;
       border-radius: 8px;
-      padding: 10px 25px;
+      padding: 12px 30px;
       cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn:hover {
+      background-color: #ffdd33;
+      transform: scale(1.05);
     }
     .section {
-      padding: 60px 10%;
+      padding: 70px 10%;
       text-align: center;
     }
+    .section:nth-child(even) {
+      background-color: #f8f9fc;
+    }
+    .section h2 {
+      font-size: 1.8rem;
+      color: #004080;
+      margin-bottom: 15px;
+    }
+    .section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
     footer {
-      background-color: #002244;
+      background-color: #004080;
       color: white;
       text-align: center;
-      padding: 20px 0;
+      padding: 25px 0;
       font-size: 0.9rem;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -127,7 +162,7 @@
     </p>
   </section>
 
-  <section class="section" id="services" style="background-color:#f0f0f8">
+  <section class="section" id="services">
     <h2 data-en="Our Services" data-zh="服務項目">Our Services</h2>
     <p data-en="International Freight Forwarding, Customs Brokerage, Warehousing, and Transportation." 
        data-zh="國際貨運代理、報關服務、倉儲與運輸。">
@@ -143,7 +178,7 @@
     </p>
   </section>
 
-  <section class="section" id="contact" style="background-color:#f0f0f8">
+  <section class="section" id="contact">
     <h2 data-en="Contact Us" data-zh="聯絡我們">Contact Us</h2>
     <p data-en="Email: info@slsc.vn | Phone: +84 28 1234 5678" data-zh="電郵：info@slsc.vn | 電話：+84 28 1234 5678">
       Email: info@slsc.vn | Phone: +84 28 1234 5678
