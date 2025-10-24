@@ -5,56 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Saigon Lion Supply Chain</title>
   <style>
+    /* 🌟 RESET & BASE */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff;
+      background-color: #fff;
       color: #333;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* HEADER */
+    /* 🌟 HEADER */
     header {
       background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
       color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 40px;
+      padding: 10px 25px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(10px);
-      transition: all 0.4s ease;
+      transition: all 0.3s ease;
     }
-
     header img {
-      height: 42px;
+      height: 40px;
       transition: transform 0.3s;
     }
+    header img:hover { transform: scale(1.05); }
 
-    header img:hover {
-      transform: scale(1.05);
+    /* 🌟 NAVIGATION */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 12px;
       font-weight: 600;
-      transition: color 0.3s, background 0.3s, padding 0.3s;
-      border-radius: 6px;
-      padding: 6px 10px;
+      transition: color 0.3s;
     }
+    nav a:hover { color: #fff8dc; }
 
-    nav a:hover {
-      color: #fffbe0;
-      background-color: #b45309;
-    }
-
-    /* LANGUAGE SWITCH */
+    /* 🌟 LANGUAGE BUTTONS */
     .lang-switch button {
       background: none;
       border: 1px solid #fff;
@@ -66,110 +61,126 @@
       font-weight: 600;
       transition: all 0.3s;
     }
-
     .lang-switch button:hover {
-      background-color: #b45309;
-      color: #fffbe0;
-      border-color: #b45309;
+      background-color: #fffbe0;
+      color: #8b4513;
+      border-color: #fffbe0;
     }
 
-    /* HERO SECTION */
+    /* 🌟 MOBILE MENU ICON */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* 🌟 HERO SECTION */
     .hero {
       background: url('hero.png') center/cover fixed no-repeat;
       color: white;
       text-align: center;
-      padding: 200px 20px;
+      padding: 160px 20px;
       position: relative;
-      overflow: hidden;
       animation: fadeIn 1.5s ease-in-out;
     }
-
     .hero::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.25);
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
-      animation: floatUp 2s ease-in-out;
+      animation: floatUp 1.6s ease-in-out;
     }
-
     .hero h1 {
-      font-size: 2.6rem;
+      font-size: 2.3rem;
       font-weight: 800;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
     }
-
     .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 25px;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
     }
-
     .btn {
       background-color: #fbbf24;
       color: #5a3100;
       font-weight: 700;
       border: none;
       border-radius: 8px;
-      padding: 12px 30px;
+      padding: 10px 25px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background-color 0.3s, transform 0.3s, color 0.3s;
+      transition: all 0.3s ease;
     }
-
     .btn:hover {
       background-color: #b45309;
-      color: #fffbe0;
+      color: #fff;
       transform: scale(1.05);
     }
 
-    /* SECTIONS */
+    /* 🌟 SECTIONS */
     .section {
-      padding: 80px 10%;
+      padding: 70px 10%;
       text-align: center;
       animation: fadeIn 1.2s ease-in-out;
     }
-
-    .section:nth-child(even) {
-      background-color: #fdfaf6;
-    }
-
+    .section:nth-child(even) { background-color: #fdfaf6; }
     .section h2 {
-      font-size: 1.9rem;
+      font-size: 1.8rem;
       color: #b45309;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
-
     .section p {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.05rem;
     }
 
-    /* FOOTER */
+    /* 🌟 FOOTER */
     footer {
       background-color: #d97706;
       color: white;
       text-align: center;
-      padding: 25px 0;
+      padding: 20px 0;
       font-size: 0.9rem;
       box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
     }
 
-    /* ANIMATIONS */
+    /* 🌟 ANIMATIONS */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes floatUp {
       0% { opacity: 0; transform: translateY(40px); }
       100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 🌟 RESPONSIVE DESIGN */
+    @media (max-width: 900px) {
+      nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(90deg, #d97706, #f59e0b);
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 15px 0;
+      }
+      nav.show { display: flex; }
+      .menu-toggle { display: block; color: white; }
+      header { flex-wrap: wrap; }
+      .lang-switch { margin-top: 8px; }
+      .hero { padding: 120px 20px; background-attachment: scroll; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
+      .section { padding: 50px 6%; }
     }
   </style>
 </head>
@@ -178,7 +189,8 @@
     <div class="logo">
       <img src="logo.png" alt="SLSC Logo" />
     </div>
-    <nav>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+    <nav id="navMenu">
       <a href="#home" data-en="Home" data-zh="首頁">Home</a>
       <a href="#about" data-en="About Us" data-zh="關於我們">About Us</a>
       <a href="#services" data-en="Services" data-zh="服務項目">Services</a>
@@ -235,26 +247,17 @@
   </footer>
 
   <script>
+    // 🔁 Language Switch
     const enBtn = document.getElementById('enBtn');
     const zhBtn = document.getElementById('zhBtn');
     const translatables = document.querySelectorAll('[data-en]');
+    enBtn.addEventListener('click', () => translatables.forEach(el => el.textContent = el.getAttribute('data-en')));
+    zhBtn.addEventListener('click', () => translatables.forEach(el => el.textContent = el.getAttribute('data-zh')));
 
-    enBtn.addEventListener('click', () => {
-      translatables.forEach(el => el.textContent = el.getAttribute('data-en'));
-    });
-
-    zhBtn.addEventListener('click', () => {
-      translatables.forEach(el => el.textContent = el.getAttribute('data-zh'));
-    });
-
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.style.padding = '4px 40px';
-      } else {
-        header.style.padding = '8px 40px';
-      }
-    });
+    // 🍔 Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    menuToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
   </script>
 </body>
 </html>
